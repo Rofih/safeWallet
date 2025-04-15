@@ -34,5 +34,5 @@ class Transaction(models.Model):
     transaction_type = models.CharField(max_length=1, choices=TRANSACTION_TYPE, default='D')
     transaction_time = models.DateTimeField(auto_now_add=True)
     verified = models.BooleanField(default=False)
-    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='sender',null=True)
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='receiver',null=True)
